@@ -41,7 +41,7 @@ gulp.task('js', function () {
 // Karma
 gulp.task('karma', function () {
   return gulp.src(['no need to supply files because everything is in config file'])
-    .pipe(karma({
+    .pipe(plugins.karma({
       configFile: 'karma.conf.js',
       action: 'watch'
     }).on('error', handleError));
@@ -56,15 +56,15 @@ gulp.task('karma-ci', function () {
 });
 
 // Watch
-gulp.task('watch', ['karma'], function () {
-  gulp.run('karma');
+gulp.task('watch' , function () {
+  //gulp.run('karma');
 
   // enable Livereload
   plugins.livereload.listen();
   gulp.watch([
     'app/index.html',
     'app/scripts/**/*'
-  ]).on('change', livereload.changed);
+  ]).on('change', plugins.livereload.changed);
 });
 
 gulp.task('default', ['js', 'copy'], function () {

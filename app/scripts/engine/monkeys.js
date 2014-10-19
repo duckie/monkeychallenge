@@ -1,7 +1,7 @@
 define(['underscore'],function(_) {
   return {
-    //function roger() {
-      //return 2;
-    //}
+    roger: function() {
+      return 2;
+    }
   };  
 })

@@ -7,13 +7,14 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha','chai'],
+    frameworks: ['requirejs','mocha','chai'],
 
     // list of files / patterns to load in the browser
     files: [
-      'app/vendor/requirejs/require.js'
-      , 'test/config-require.js'
-      , 'test/mocha/test.js' 
+      {pattern:'app/vendor/**/*.js', included:false}
+      , {pattern:'app/scripts/**/*.js', included:false}
+      , {pattern:'test/mocha/*.js', included:false}
+      , 'test/test-main.js'
     ],
 
     // list of files / patterns to exclude
@@ -30,6 +31,8 @@ module.exports = function(config) {
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
+    
+    reporters: ['progress'],
 
 
     // Start these browsers, currently available:

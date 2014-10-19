@@ -4,7 +4,7 @@ if (typeof define !== 'function') {
 }
 
 define({
-  baseUrl: '.',
+  baseUrl: '../app',
   // Here paths are set relative to `/source` folder
   paths: {
     'angular' : 'vendor/angular/angular'
@@ -13,9 +13,6 @@ define({
     , 'ngRoute' : 'vendor/angular-route/angular-route'
     , 'underscore' : 'vendor/underscore/underscore'
     , 'monkeys':'scripts/engine/monkeys'
-    //, 'ngResource' : 'vendor/angular-resource/angular-resource'
-    //, 'ngSanitize' : 'vendor/angular-sanitize/angular-sanitize'
-    //'ui.router' : 'vendor/angular-ui-router/release/angular-ui-router'
   },
   shim: {
     'angular': {
@@ -23,9 +20,5 @@ define({
       'exports': 'angular'
     }
     , 'ngRoute':['angular']
-    //, 'ngResource': ['angular']
-    //, 'ngResource':['angular']
-    //, 'ngSanitize':['angular']
-    //'ui.router' : ['angular']
   }
 });

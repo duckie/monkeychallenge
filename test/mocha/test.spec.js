@@ -1,7 +1,11 @@
 define(['monkeys'], function(monkeys) {
-  describe("Blah",function() {
-    it("Tests things",function() { 
-      chai.assert.equal(monkeys.roger(),2,"Function roger should return 2");
+  'use strict';
+  var expect = chai.expect;
+
+  describe("Grid play model",function() {
+    it("Construction",function() { 
+      var grid1 = monkeys.createSingleGridPlay({width:10});
+      expect(grid1.width).to.equal(10);
     });
   });
 });

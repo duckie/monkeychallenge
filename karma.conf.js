@@ -7,11 +7,13 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['requirejs','mocha','chai'],
+    frameworks: ['requirejs','mocha'],
 
     // list of files / patterns to load in the browser
     files: [
       {pattern:'app/vendor/**/*.js', included:false}
+      , 'app/vendor/chai/chai.js'
+      , 'app/vendor/chai-as-promised/lib/chai-as-promised.js'
       , {pattern:'app/scripts/**/*.js', included:false}
       , {pattern:'test/mocha/*.js', included:false}
       , 'test/test-main.js'

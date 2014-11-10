@@ -29,6 +29,9 @@ require(['base/app/scripts/config-require'], function (config) {
   // add config for test dependencies
   //config.paths['angular-mocks'] = './vendor/angular-mocks/angular-mocks';
   //config.shim['angular-mocks'] = ['angular'];
+  config.paths['chai'] = 'vendor/chai/chai';
+  config.paths['chai-as-promised'] = 'vendor/chai-as-promised/lib/chai-as-promised';
+  config.paths['chai-setup'] = '../test/chai-setup';
 
   // apply config to require
   window.require.config(config);

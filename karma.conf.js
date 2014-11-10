@@ -12,10 +12,11 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       {pattern:'app/vendor/**/*.js', included:false}
-      , 'app/vendor/chai/chai.js'
-      , 'app/vendor/chai-as-promised/lib/chai-as-promised.js'
+      //, 'app/vendor/chai/chai.js'
+      //, 'app/vendor/chai-as-promised/lib/chai-as-promised.js'
       , {pattern:'app/scripts/**/*.js', included:false}
       , {pattern:'test/mocha/*.js', included:false}
+      , {pattern:'test/chai-setup.js', included:false}
       , 'test/test-main.js'
     ],
 

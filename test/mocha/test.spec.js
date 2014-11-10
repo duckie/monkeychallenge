@@ -1,17 +1,25 @@
-define(['monkeys','vendor/chai/chai','vendor/chai-as-promised/lib/chai-as-promised','es5-shim'], function(monkeys,chai,asp) {
+define(['monkeys','chai-setup'], function(monkeys,chai) {
   'use strict';
-  chai.use(asp);
-  chai.should();
   var expect = chai.expect;
 
   describe("Grid play model",function() {
-    it("Construction",function() { 
-      var grid1 = monkeys.createSingleGridPlay({width:10});
-      grid1.width.should.equal(10);
 
-      //console.log(asp);
+    var grid1 = monkeys.createSingleGridPlay({width:10});
+
+    it("Construction",function() { 
+      grid1.width.should.equal(10);
+      grid1.height.should.equal(5);
+      grid1.height = 6;
+      grid1.height.should.equal(6);
       return grid1.play(0,0).should.eventually.equal(true);
-      //done();
+    });
+
+    it("Basic play",function() { 
+      grid1.height.should.equal(6);
+      //var grid1 = monkeys.createSingleGridPlay({width:10});
+      //grid1.width.should.equal(10);
+      //grid1.height.should.equal(5);
+      return grid1.play(0,0).should.eventually.equal(true);
     });
   });
 });

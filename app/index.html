@@ -9,12 +9,8 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet" href="styles/bootstrap.css">
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
   <body>
     <!--[if lt IE 7]>
@@ -40,52 +36,14 @@
        ga('send', 'pageview');
     </script>
 
-    <!--<script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>-->
-        
-        <!-- build:js scripts/plugins.js -->
-        <!--
-        <script src="bower_components/sass-bootstrap/js/affix.js"></script>
-        <script src="bower_components/sass-bootstrap/js/alert.js"></script>
-        <script src="bower_components/sass-bootstrap/js/button.js"></script>
-        <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
-        <script src="bower_components/sass-bootstrap/js/transition.js"></script>
-        <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
-        <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
-        <script src="bower_components/sass-bootstrap/js/modal.js"></script>
-        <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
-        <script src="bower_components/sass-bootstrap/js/tab.js"></script>
-        <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
-        <script src="bower_components/sass-bootstrap/js/popover.js"></script>-->
-        <!-- endbuild -->
 
-        <!-- build:js scripts/modules.js -->
-        <!--
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        -->
-        <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <!--
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        -->
-        <!-- endbuild -->
-
-        <script src="vendor/requirejs/require.js"></script>
-        <script>
-          // obtain requirejs config
-          require(['require', 'scripts/config-require'], function (require, config) {
-            // set cache beater
-            config.urlArgs = 'bust=v0.4.0';
-            // update global require config
-            window.require.config(config);
-            // load app
-            require(['./scripts/main.js']);
-          });
-        </script> 
+    <script src="vendor/requirejs/require.js"></script>
+    <script>
+      require(['require', 'scripts/config-require'], function (require, config) {
+        config.urlArgs = 'bust=v0.4.0';
+        window.require.config(config);
+        require(['./scripts/main.js']);
+      });
+    </script> 
 </body>
 </html>

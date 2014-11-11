@@ -7,10 +7,6 @@ define(['angular','ngRoute'], function(angular) {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/test', {
-        templateUrl: 'views/test.html',
-        controller: 'MainCtrl'
-      });
     })
     .controller('MainCtrl', function ($scope) {
       $scope.awesomeThings = [

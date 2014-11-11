@@ -1,5 +1,7 @@
 var _ = require('underscore');
 var es = require('event-stream');
+var express = require('express');
+var livereload_connector = require('connect-livereload');
 var gulp = require('gulp');
 var plugins = require("gulp-load-plugins")({
     pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
@@ -30,6 +32,18 @@ gulp.task('copy', ['js'], function () {
   );
 });
 
+gulp.task('express', function() {
+  var app = express();
+  //console.log(__dirname+'/app');
+  app.use(livereload_connector({port:35729}));
+  app.use(express.static(__dirname + '/app'));
+  app.listen(4000);
+});
+//
+//gulp.task('server', [], function() {
+  //plugins.Livereload
+//});
+
 // JavaScript
 gulp.task('js', function () {
   //return gulp.src(plugins.mainBowerFiles())
@@ -56,14 +70,13 @@ gulp.task('karma-ci', function () {
 });
 
 // Watch
-gulp.task('watch' , function () {
-  //gulp.run('karma');
-
+gulp.task('server', ['express'], function () {
   // enable Livereload
   plugins.livereload.listen();
   gulp.watch([
     'app/index.html',
-    'app/scripts/**/*'
+    'app/scripts/**/*',
+    'app/views/**/*'
   ]).on('change', plugins.livereload.changed);
 });
 

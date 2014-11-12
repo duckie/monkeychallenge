@@ -34,15 +34,10 @@ gulp.task('copy', ['js'], function () {
 
 gulp.task('express', function() {
   var app = express();
-  //console.log(__dirname+'/app');
   app.use(livereload_connector({port:35729}));
   app.use(express.static(__dirname + '/app'));
   app.listen(4000);
 });
-//
-//gulp.task('server', [], function() {
-  //plugins.Livereload
-//});
 
 // JavaScript
 gulp.task('js', function () {
@@ -76,7 +71,8 @@ gulp.task('server', ['express'], function () {
   gulp.watch([
     'app/index.html',
     'app/scripts/**/*',
-    'app/views/**/*'
+    'app/views/**/*',
+    'app/styles/**/*.css'
   ]).on('change', plugins.livereload.changed);
 });
 

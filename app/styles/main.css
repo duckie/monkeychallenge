@@ -4,10 +4,30 @@ body {
   padding-bottom: 20px;
 }
 
+.grid-play-row {
+  clear:both;
+}
+
+.grid-play-cell {
+  text-align:center; 
+  width:50px;
+  height:50px;
+  margin-right:10px;
+  margin-bottom:10px;
+  float:left;
+  background-color:#000;
+  color:#ddd;
+  cursor:pointer;
+}
+
+.grid-play-cell > span {
+  vertical-align:middle;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
 .footer {
+  clear:both;
   padding-left: 15px;
   padding-right: 15px;
 }

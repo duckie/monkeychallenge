@@ -9,11 +9,6 @@ define(['monkeys','chai-setup','rsvp'], function(monkeys,chai,RSVP) {
         width:10,
         shuffle_func: _.identity
       });
-      this.grid1.values.sort(function(a,b) {
-        if (a < b) return 1;
-        if (a > b) return -1;
-        return 0;
-      });
     });
 
     it("Construction",function() { 

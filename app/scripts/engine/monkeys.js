@@ -33,7 +33,7 @@ define(['underscore','rsvp'],function(_, RSVP) {
           });
         }
       }
-      else if (false === this.current_state.finished) {
+      else if (0 < this.current_state.current && false === this.current_state.finished) {
         ++this.current_state.nb_failed_attempt;
       }
      

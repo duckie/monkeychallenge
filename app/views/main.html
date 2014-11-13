@@ -2,7 +2,7 @@
   <ul class="nav nav-pills pull-right">
     <li><a ng-href="#/">Home</a></li>
   </ul>
-  <h3 class="text-muted">wereallchimps</h3>
+  <h3 class="text-muted">Monkey Challenge</h3>
 </div>
 
 
@@ -10,14 +10,21 @@
   <form novalidate>
     Lignes : <input type="number" ng-model="config.height" /> 
     Colonnes: <input type="number" ng-model="config.width" /> 
+    Jusqu'à: <input type="number" ng-model="config.count_until" /> 
     <button ng-click="newGrid()">Nouvelle grille</button>
   </form>
   
-    <div class="grid-play-row" ng-repeat="line in grid.values track by $index">
-      <div class="grid-play-cell" ng-repeat="value in line track by $index">
+  <div class="grid-play">
+    <div class="grid-play-row" ng-repeat="(rowIndex,line) in grid.values track by $index">
+      <div ng-repeat="(colIndex, value) in line track by $index" class="grid-play-cell {{getCellClass(value)}}" ng-click="play(rowIndex,colIndex);">
         <span>{{value}}</span>
       </div>
     </div>
+  </div>
+
+  <div class="grid-message">
+    {{message}}
+  </div>
 </div>
 
 <div class="footer">

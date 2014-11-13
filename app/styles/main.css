@@ -4,6 +4,10 @@ body {
   padding-bottom: 20px;
 }
 
+.play-grid > form input {
+  width:60px;
+}
+
 .grid-play-row {
   clear:both;
 }
@@ -18,11 +22,36 @@ body {
   background-color:#000;
   color:#ddd;
   cursor:pointer;
+  font-size:2em;
 }
 
-.grid-play-cell > span {
-  vertical-align:middle;
+.grid-play {
+  margin-top:10px;
 }
+
+/*.grid-play-cell span {
+  vertical-align:middle;
+  display:inline-block;
+}*/
+
+.cell-empty { background-color:#999; }
+.cell-empty > span { display:none; }
+.cell-init{ background-color:#444; }
+.cell-init> span { }
+.cell-filled { background-color:#444; }
+.cell-filled > span { 
+  display:none;
+  float:left;
+}
+.cell-played { background-color:#494; }
+.cell-played > span { 
+}
+
+.grid-message {
+  clear:both;
+  height:30px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

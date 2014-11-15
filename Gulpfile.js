@@ -8,6 +8,7 @@ var plugins = require("gulp-load-plugins")({
     replaceString: /\bgulp[\-.]/
 });
 var ngAnnotate = require('gulp-ng-annotate');
+var htmlReplace = require('gulp-html-replace');
 var requirejs = require('requirejs')
 var rjs = require('./tools/gulp-rjs-optimizer/gulp-rjs-optimizer')
 
@@ -17,16 +18,21 @@ var handleError = function (err) {
 };
 
 // Copy
-gulp.task('build', ['copy','js']);
+gulp.task('build', ['copy','html-compile','js']);
 
 // Copy
-gulp.task('copy', ['js'], function () {
+gulp.task('copy', function () {
   return es.concat(
-    gulp.src(['app/index.html']).pipe(gulp.dest('dist'))
-    , gulp.src(['app/views/**/*.html']).pipe(gulp.dest('dist/views'))
+    gulp.src(['app/views/**/*.html']).pipe(gulp.dest('dist/views'))
     , gulp.src(['app/styles/**/*.css']).pipe(gulp.dest('dist/styles'))
     , gulp.src(['app/fonts/**/*']).pipe(gulp.dest('dist/fonts'))
   );
+});
+
+gulp.task('html-compile', function() {
+  return gulp.src(['app/index.html'])
+    .pipe(htmlReplace({js:'js/monkeychallenge.js'}))
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('express', function() {
@@ -51,7 +57,6 @@ gulp.task('js', function () {
   config.paths['almond'] = '../node_modules/almond/almond';
 
   rjs(config)
-    .pipe(plugins.debug())
     .pipe(ngAnnotate())
     .pipe(plugins.uglify().on('error', handleError))
     .pipe(gulp.dest('dist/js'));
@@ -89,7 +94,7 @@ gulp.task('server', ['express'], function () {
 gulp.task('dist-server', function() {
   var app = express();
   app.use(express.static(__dirname + '/dist'));
-  app.listen(4000);
+  app.listen(4001);
 });
 
 gulp.task('default', ['js', 'copy'], function () {

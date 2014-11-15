@@ -22,9 +22,8 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
-
+    <!-- build:ganalytics -->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,9 +34,10 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
-
-
+    <!-- endbuild -->
+    <!-- build:js -->
     <script src="vendor/requirejs/require.js"></script>
     <script src="scripts/loader.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

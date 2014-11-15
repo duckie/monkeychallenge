@@ -1,7 +1,7 @@
 define([
     'angular'
-    ,'./controllers/main'
-    ,'./services/rsvp2q'
+    ,'scripts/controllers/main'
+    ,'scripts/services/rsvp2q'
     ,'ngRoute'
 ], function (angular) {
   'use strict';

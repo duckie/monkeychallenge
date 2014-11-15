@@ -38,12 +38,6 @@
 
 
     <script src="vendor/requirejs/require.js"></script>
-    <script>
-      require(['require', 'scripts/config-require'], function (require, config) {
-        config.urlArgs = 'bust=v0.4.0';
-        window.require.config(config);
-        require(['./scripts/main.js']);
-      });
-    </script> 
+    <script src="scripts/loader.js"></script>
 </body>
 </html>

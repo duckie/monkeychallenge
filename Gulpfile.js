@@ -7,6 +7,9 @@ var plugins = require("gulp-load-plugins")({
     pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
     replaceString: /\bgulp[\-.]/
 });
+var ngAnnotate = require('gulp-ng-annotate');
+var requirejs = require('requirejs')
+var rjs = require('./tools/gulp-rjs-optimizer/gulp-rjs-optimizer')
 
 var handleError = function (err) {
   console.log(err.name, ' in ', err.plugin, ': ', err.message);
@@ -19,13 +22,7 @@ gulp.task('build', ['copy','js']);
 // Copy
 gulp.task('copy', ['js'], function () {
   return es.concat(
-    // update index.html to work when built
-    gulp.src(['app/index.html'])
-      .pipe(gulp.dest('dist'))
-    // copy config-require
-    , gulp.src(['app/scripts/**/*.js'])
-      .pipe(plugins.uglify().on('error', handleError))
-      .pipe(gulp.dest('dist/scripts'))
+    gulp.src(['app/index.html']).pipe(gulp.dest('dist'))
     , gulp.src(['app/views/**/*.html']).pipe(gulp.dest('dist/views'))
     , gulp.src(['app/styles/**/*.css']).pipe(gulp.dest('dist/styles'))
     , gulp.src(['app/fonts/**/*']).pipe(gulp.dest('dist/fonts'))
@@ -41,10 +38,23 @@ gulp.task('express', function() {
 
 // JavaScript
 gulp.task('js', function () {
-  //return gulp.src(plugins.mainBowerFiles())
-  return gulp.src(['app/vendor/**/*.js'])
-    .pipe(plugins.filter(['**/*','!**/src/*','!**/test/**/*','!**/build/**/*']))
-    .pipe(gulp.dest('dist/vendor'));
+  var config = _.extend(require('./app/scripts/config-require'),{
+    baseUrl:"./app",
+    name:'almond',
+    include:["scripts/main"],
+    insertRequire:["scripts/main"],
+    out:"monkeychallenge.js",
+    optimize:'none',
+    wrap:true
+  });
+
+  config.paths['almond'] = '../node_modules/almond/almond';
+
+  rjs(config)
+    .pipe(plugins.debug())
+    .pipe(ngAnnotate())
+    .pipe(plugins.uglify().on('error', handleError))
+    .pipe(gulp.dest('dist/js'));
 });
 
 // Karma
@@ -74,6 +84,12 @@ gulp.task('server', ['express'], function () {
     'app/views/**/*',
     'app/styles/**/*.css'
   ]).on('change', plugins.livereload.changed);
+});
+
+gulp.task('dist-server', function() {
+  var app = express();
+  app.use(express.static(__dirname + '/dist'));
+  app.listen(4000);
 });
 
 gulp.task('default', ['js', 'copy'], function () {

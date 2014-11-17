@@ -39,9 +39,9 @@ define(['angular','monkeys'], function(angular,monkeys) {
           .then(function(result) {
             if (0 < result.current) {
               if (result.finished)
-                $scope.message = "You won ! You made " + result.nb_failed_attempt + " errors.";
+                $scope.message = "You won ! You made " + result.nb_failed_attempt + " mistakes.";
               else
-                $scope.message = "Playing... " + result.nb_failed_attempt + " mistakes";
+                $scope.message = "Playing... " + result.nb_failed_attempt + " mistakes.";
           }
         });
       };

@@ -1,5 +1,6 @@
 define([
     'angular'
+    ,'scripts/config/angular-translations'
     ,'scripts/controllers/main'
     ,'scripts/services/rsvp2q'
     ,'ngRoute'
@@ -8,6 +9,7 @@ define([
   return angular.module('app', [
     'ngRoute'
     ,'app.main'
+    ,'app.translations'
     ,'rsvp2q'
   ]).config(['$routeProvider', function ($routeProvider) {
     $routeProvider

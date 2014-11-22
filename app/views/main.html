@@ -22,8 +22,9 @@
     </div>
   </div>
 
-  <div class="grid-message">
-    {{message}}
+  <div class="grid-message">  
+    {{ message | translate:'{val:nb_mistakes}' }}
+    <!--{{message}}-->
   </div>
 </div>
 

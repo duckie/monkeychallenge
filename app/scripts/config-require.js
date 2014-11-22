@@ -12,10 +12,12 @@ define(function(require){
       , 'async' : 'vendor/requirejs-plugins/src/async'
       , 'jquery' : 'vendor/jquery/jquery'
       , 'ngRoute' : 'vendor/angular-route/angular-route'
+      , 'ngTranslate': 'vendor/angular-translate/angular-translate'
       , 'underscore' : 'vendor/underscore/underscore'
       , 'rsvp' : 'vendor/rsvp/rsvp.amd'
       , 'monkeys':'scripts/engine/monkeys'
       , 'es5-shim' : 'vendor/es5-shim/es5-shim'
+      , 'translations': 'scripts/config/translations'
       //, 'ngResource' : 'vendor/angular-resource/angular-resource'
       //, 'ngSanitize' : 'vendor/angular-sanitize/angular-sanitize'
       //'ui.router' : 'vendor/angular-ui-router/release/angular-ui-router'
@@ -26,6 +28,7 @@ define(function(require){
         'exports': 'angular'
       }
       , 'ngRoute':['angular']
+      , 'ngTranslate':['angular']
       //, 'ngResource': ['angular']
       //, 'ngResource':['angular']
       //, 'ngSanitize':['angular']

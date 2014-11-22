@@ -3,7 +3,8 @@ define(['angular','monkeys'], function(angular,monkeys) {
   return angular.module('app.main',[])
     .controller('MainCtrl', ['$scope','rsvp2q', function ($scope,$r2q) {
       $scope.value = "test";
-      $scope.message = "Click on 1 to start.";
+      $scope.message = 'BEFORE_GAME.MESSAGE_BOX';
+      $scope.nb_mistakes = 0;
       $scope.config = {
         width:5,
         height:5,
@@ -14,7 +15,8 @@ define(['angular','monkeys'], function(angular,monkeys) {
 
       $scope.newGrid = function() {
         $scope.grid = monkeys.createSingleGridPlay($scope.config);
-        $scope.message = "Click on 1 to start.";
+        $scope.message = 'BEFORE_GAME.MESSAGE_BOX';
+        $scope.nb_mistakes = 0;
       };
 
       $scope.getCellClass = function(value) {
@@ -37,11 +39,12 @@ define(['angular','monkeys'], function(angular,monkeys) {
       $scope.play = function(row,col) {
         $r2q.asAngularPromise($scope.grid.play(col,row))
           .then(function(result) {
+            $scope.nb_mistakes = result.nb_failed_attempt;
             if (0 < result.current) {
               if (result.finished)
-                $scope.message = "You won ! You made " + result.nb_failed_attempt + " mistakes.";
+                $scope.message = "GAME_WON.MESSAGE_BOX";
               else
-                $scope.message = "Playing... " + result.nb_failed_attempt + " mistakes.";
+                $scope.message = "DURING_GAME.MESSAGE_BOX";
           }
         });
       };

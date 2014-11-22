@@ -7,7 +7,7 @@ var plugins = require("gulp-load-plugins")({
     pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
     replaceString: /\bgulp[\-.]/
 });
-var ngAnnotate = require('gulp-ng-annotate');
+//var ngAnnotate = require('gulp-ng-annotate');
 var htmlReplace = require('gulp-html-replace');
 var requirejs = require('requirejs')
 var rjs = require('./tools/gulp-rjs-optimizer/gulp-rjs-optimizer')
@@ -50,15 +50,17 @@ gulp.task('js', function () {
     include:["scripts/main"],
     insertRequire:["scripts/main"],
     out:"monkeychallenge.js",
-    optimize:'none',
+    //optimize:'none',
+    optimize:'uglify2',
+    preserveLicenseComments:false,
     wrap:true
   });
 
   config.paths['almond'] = '../node_modules/almond/almond';
 
   rjs(config)
-    .pipe(ngAnnotate())
-    .pipe(plugins.uglify().on('error', handleError))
+    //.pipe(ngAnnotate())
+    //.pipe(plugins.uglify().on('error', handleError))
     .pipe(gulp.dest('dist/js'));
 });
 
